@@ -100,3 +100,12 @@ sh $SCRATCH/SAYEulerDataCheck/01_DownloadFastqc.sh
 cd $Directory
 sh $SCRATCH/SAYEulerDataCheck/02_FastqcAFolder.sh -f FASTQ
 ```
+Next we will select only the first 85 bp in the data. You can either run this live on the terminal,
+
+```
+sh $SCRATCH/03_CutData.sh -f FASTQ -o CLEAN -l 85
+```
+or using the bsub system.
+```
+sh $SCRATCH/04_CutDataBsub.sh -f FASTQ -o CLEAN -l 85
+```
