@@ -79,3 +79,24 @@ However this will only place data from the second read in the CLEAN directory. S
 ```
 for x in $(ls FASTQ | grep .1.fastq); do echo "bsub cp FASTQ/$x CLEAN/$x";done |  bash
 ```
+# Example
+
+In the example below we will first download the 1,000 reads from the SRA for six Cassava samples: in the directory `cassava`. 
+```
+Directory=cassava
+module load git
+git clone https://github.com/stevenandrewyates/SAYEulerDataManagement
+sh $SCRATCH/SAYEulerDataManagement/01_DownloadSRAtoolkit.sh
+sh $SCRATCH/SAYEulerDataManagement/02_DownloadCassavaSix.sh -f $Directory -n 1000
+```
+
+If you already have some data don't worry, you can skip the above.
+
+Next we will run the code on the `$Directory`. Please make sure you specify this, like above or use an explicit path "/cluster/scratch/user/cassava". Also remember that to specify the folder with the fastq data in when calling `SAYEulerDataCheck/02_FastqcAFolder.sh` by using `-f FASTQ`.
+
+```
+git clone https://github.com/stevenandrewyates/SAYEulerDataCheck
+sh $SCRATCH/SAYEulerDataCheck/01_DownloadFastqc.sh
+cd $Directory
+sh $SCRATCH/SAYEulerDataCheck/02_FastqcAFolder.sh -f FASTQ
+```
