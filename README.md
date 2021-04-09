@@ -29,12 +29,12 @@ mkdir FASTQC
 Then you can easily check fastq files using the following
 
 ```
-FastQC/fastqc input.fastq –outdir=FASTQ
+FastQC/fastqc input.fastq –outdir=FASTQC
 ```
 
 This will generate a html output file that needs downloading from Euler and can be viewed in a web browser.
 
-However you probably want to do this lots of times? This is easy if you have all of your fastq data in a directory: like FASTQ. You can then make a simple `for` loop to do this. In the example below the contents of the directory FASTQ `x in $(ls FASTQ)` are used as input to the for loop. This will then write the commands ‘do echo’. Finally we send the commands to Euler using a pipe `| bash`. I find this useful to check the commands before running them (omit the `| bash`).
+However you probably want to do this lots of times? This is easy if you have all of your fastq data in a directory: like FASTQ. You can then make a simple `for` loop to do this. In the example below the contents of the directory FASTQ `x in $(ls FASTQ)` are used as input to the for loop. This will then write the commands `do echo`. Finally we send the commands to Euler using a pipe `| bash`. I find this useful to check the commands before running them (omit the `| bash`).
 
 ```
 for x in $(ls FASTQ); do echo FastQC/fastqc FASTQ/$x --outdir=FASTQC;done | bash
